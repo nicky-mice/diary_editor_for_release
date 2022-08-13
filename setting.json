@@ -4,5 +4,6 @@
     "data3" : "30",
     "savePath" : "text",
     "backupPath" : "",
-    "targetLen" : 3000
+    "targetLen" : 3000,
+    "displayInputSpeed" : false
 }
