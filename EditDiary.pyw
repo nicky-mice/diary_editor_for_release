@@ -1,8 +1,8 @@
-#coding:utf-8
+# coding:utf-8
 
 import datetime as dt
 # import time
-#from mimetypes import init
+# from mimetypes import init
 import os
 import json
 import tkinter as tk
@@ -13,8 +13,8 @@ from tkinter.font import Font
 from ttkthemes import *
 from subprocess import Popen
 # import pyautogui
-#from webbrowser import BackgroundBrowser
-#import winsound
+# from webbrowser import BackgroundBrowser
+# import winsound
 # import threading
 
 
@@ -72,7 +72,7 @@ def save_text(inputText, path, fileName):
 
 
 # ボタンが押されたときの処理
-#保存して終了
+# 保存して終了
 def save_and_quit():
 
     # inputTextの取得 ０番目～最後(end)まで
@@ -149,7 +149,7 @@ def show_time():
     # inputTextの取得 ０番目～最後から改行文字を引いた分(end -2 chars)まで
     inputText = inputTextBox.get('1.0', 'end -1 chars')
     
-    #入力速度（分速）の計算
+    # 入力速度（分速）の計算
     inputSpeed = len(inputText) * 60 / (dt.datetime.today() - initialTime).total_seconds()
     
     # 今日の文字数の計算と表示
@@ -166,11 +166,11 @@ def show_time():
 
 
 # 効果音の処理
-#def local_playsound():
+# def local_playsound():
 #    winsound.PlaySound("魔王魂 効果音 システム44.wav", winsound.SND_FILENAME)
 
 
-#def local_playsound_threading(event):
+# def local_playsound_threading(event):
 #    t = threading.Thread(target = local_playsound())
 #    t.start()
 
@@ -276,6 +276,11 @@ def run_GUI():
     # 入力文字速度をクリックしたときのキーイベントを定義
     inputSpeed.bind("<Button-1>", lambda event : switch_input_speed_display())
 
+    # 文字入力速度の設定がFalseなら非表示にする
+    if settingJson["displayInputSpeed"] == False:
+        switch_input_speed_display()
+
+
 
     # 入力テキストボックスの定義
     global inputTextBox
@@ -292,7 +297,7 @@ def run_GUI():
 
 
     # widgetの配置
-    #ボタンの配置
+    # ボタンの配置
     ButtonA.grid(row=0, column=0, pady=5, sticky=(tk.N, tk.W))
     ButtonC.grid(row=0, column=1, pady=5, sticky=(tk.N, tk.W))
 
@@ -321,7 +326,7 @@ def run_GUI():
     # テキストボックスにフォーカスを合わせる
     inputTextBox.focus_set()
 
-    #Popen("Change2Kana", shell=True)
+    # Popen("Change2Kana", shell=True)
 
 
 
