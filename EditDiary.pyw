@@ -8,6 +8,7 @@ import json
 import tkinter as tk
 from tkinter import ttk
 from tkinter.font import Font
+from turtle import back
 # from matplotlib.pyplot import pause
 # from numpy import isin
 from ttkthemes import *
@@ -26,6 +27,7 @@ def setup_variables():
     initialTime = dt.datetime.today()
 
     # プログラム開始時点での年月日をyyyymmdd形式で取得
+    global date
     date = initialTime.strftime('%Y%m%d')
 
     # setting.jsonを開く
@@ -79,7 +81,9 @@ def save_and_quit():
     global inputText
     inputText = inputTextBox.get('1.0', 'end')
 
-    # 今日の日付.textにテキストボックスの内容を追加
+    # 今日の日付.textにテキストボックスの内容を追加    
+    todaysFileName = inputDate.get() + ".txt"
+
     save_text(inputText, settingJson["savePath"], todaysFileName)
 
     # バックアップの保存
@@ -280,6 +284,11 @@ def run_GUI():
     if settingJson["displayInputSpeed"] == False:
         switch_input_speed_display()
 
+    # 保存先の日付を指定するためのEntryを作成
+    global inputDate
+    inputDate = ttk.Entry(frame2)
+    inputDate.configure(font = fon2, foreground="#000000")
+    inputDate.insert(0, date)
 
 
     # 入力テキストボックスの定義
@@ -317,11 +326,14 @@ def run_GUI():
     # 文字入力速度の配置
     inputSpeed.grid(row=3, column=0, columnspan=3, padx=5, pady=5, sticky = (tk.N, tk.W, tk.S, tk.E))
 
+    # 日付指定エントリーの配置
+    inputDate.grid(row=4, column=0, columnspan=3, padx=5, pady=5, sticky = (tk.N, tk.W, tk.S))
+
     # テキストボックスの配置
-    inputTextBox.grid(row = 4, column = 0, sticky = (tk.N, tk.W, tk.S, tk.E))
+    inputTextBox.grid(row=5, column=0, sticky = (tk.N, tk.W, tk.S, tk.E))
 
     # スクロールバーの配置
-    scrollbar.grid(row=4, column=1, sticky=(tk.N, tk.S))
+    scrollbar.grid(row=5, column=1, sticky=(tk.N, tk.S))
 
     # テキストボックスにフォーカスを合わせる
     inputTextBox.focus_set()
