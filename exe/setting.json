@@ -1,0 +1,9 @@
+{
+    "data1" : "10",
+    "data2" : "20",
+    "data3" : "30",
+    "savePath" : "text",
+    "backupPath" : "",
+    "targetLen" : 3000,
+    "displayInputSpeed" : false
+}
